@@ -14,51 +14,49 @@ export default function Login(props) {
 
   async function handleSubmit(e) {
     e.preventDefault();
-
-    try{
+    try {
       await authenticateUser(user, password);
       router.push("/");
-    }catch(err){
-     setWarning(err.message);
+    } catch (err) {
+      setWarning(err.message);
     }
-
   }
 
   return (
     <>
-     <div className="justify-content-center align-items-center " style={{ backgroundColor: '#f5f5f5',  padding: '20px' }}>
-      <Card bg="light">
-        <Card.Body>
-          <h2>Login</h2>
-          Please enter your login information below:
-        </Card.Body>
-      </Card>
+      <div className="justify-content-center align-items-center " style={{ backgroundColor: '#f5f5f5', padding: '20px' }}>
+        <Card bg="light">
+          <Card.Body>
+            <h2>Login</h2>
+            Please enter your login information below:
+          </Card.Body>
+        </Card>
 
-      <br />
-
-      <Form onSubmit={handleSubmit}>
-        <Form.Group >
-          <Form.Label>User:</Form.Label>
-          <Form.Control type="text" value={user} id="userName" name="userName" onChange={e => setUser(e.target.value)} />
-        </Form.Group>
         <br />
-        <Form.Group>
-          <Form.Label>Password:</Form.Label>
-          <Form.Control type="password" value={password} id="password" name="password" onChange={e => setPassword(e.target.value)} />
-        </Form.Group  >
 
-        {warning && <>
+        <Form onSubmit={handleSubmit}>
+          <Form.Group >
+            <Form.Label>User:</Form.Label>
+            <Form.Control type="text" value={user} id="userName" name="userName" onChange={e => setUser(e.target.value)} />
+          </Form.Group>
           <br />
-          <Alert variant='danger'>
-            {warning}
-          </Alert>
-        </>}
+          <Form.Group>
+            <Form.Label>Password:</Form.Label>
+            <Form.Control type="password" value={password} id="password" name="password" onChange={e => setPassword(e.target.value)} />
+          </Form.Group  >
 
-        <br />
-        <Button variant="primary" className="pull-right" type="submit">Login</Button>
-      </Form>
-      <br></br>
-      <span>Not a member?</span>  <Link href="/register" style={{color: '#2c3e50' }}>Register Now</Link>
+          {warning && <>
+            <br />
+            <Alert variant='danger'>
+              {warning}
+            </Alert>
+          </>}
+
+          <br />
+          <Button variant="primary" className="pull-right" type="submit">Login</Button>
+        </Form>
+        <br></br>
+        <span>Not a member?</span>  <Link href="/register" style={{ color: '#2c3e50' }}>Register Now</Link>
       </div>
     </>
   );
