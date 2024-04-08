@@ -18,7 +18,6 @@ export function readToken() {
 export function isAuthenticated() {
     const token = readToken();
     return token ? true : false;
-
 }
 
 export function removeToken() {
@@ -26,10 +25,10 @@ export function removeToken() {
         localStorage.removeItem('access_token');
 }
 
-export async function authenticateUser(user, password) {
+export async function authenticateUser(userName, password) {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user/login`, {
         method: "POST",
-        body: JSON.stringify({ userName: user, password: password }),
+        body: JSON.stringify({ userName: userName, password: password }),
         headers: {
             "content-type": "application/json"
         }
@@ -45,21 +44,20 @@ export async function authenticateUser(user, password) {
     }
 }
 
-export async function registerUser(user, password, password2) {
+export async function registerUser(userName, password, password2) {
 
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user/register`, {
         method: "POST",
-        body: JSON.stringify({ userName: user, password: password, password2: password2 }),
+        body: JSON.stringify({ userName: userName, password: password, password2: password2 }),
         headers: {
             "content-type": "application/json"
         }
     });
 
     const data = await res.json();
-    console.log(data)
-    // if (res.status === 200) {
-    //     return true;
-    // } else {
-    //     throw new Error(data.message);
-    // }
+    if (res.status === 200) {
+        return true;
+    } else {
+        throw new Error(data.message);
+    }
 }

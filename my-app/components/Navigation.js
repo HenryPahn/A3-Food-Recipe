@@ -7,12 +7,23 @@ import { readToken, removeToken } from '@/lib/authenticate';
 
 export default function Navigation() {
     const router = useRouter();
-
-    let token = readToken()
-
+    const [token, setToken] = useState(undefined)
+    useEffect(() => {
+        setToken(readToken())
+    }, [])
+    
     function logout() {
         removeToken();
+        setToken(undefined)
         router.push('/login');
+    }
+    
+    let favourites = () => {
+        router.push('/favourites');
+    }
+
+    let history = () => {
+        router.push('/history');
     }
 
     return (<>
@@ -24,13 +35,15 @@ export default function Navigation() {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                         <Link href="/" passHref legacyBehavior><Nav.Link active={router.pathname === "/"} >Home</Nav.Link></Link>
-                        <Link href="/plans" passHref legacyBehavior><Nav.Link active={router.pathname === "/plans"} >My Plans</Nav.Link></Link>
-                        {typeof token !== "undefined" && <Link href="/search" passHref legacyBehavior><Nav.Link active={router.pathname === "/search"} >Search</Nav.Link></Link>}
+                        {typeof token !== "undefined" && <Link href="/plans" passHref legacyBehavior><Nav.Link active={router.pathname === "/plans"} >My Plans</Nav.Link></Link>}
+                        <Link href="/search" passHref legacyBehavior><Nav.Link active={router.pathname === "/search"} >Search</Nav.Link></Link>
                     </Nav>
                     &nbsp;
                     <Nav className="ml-auto">
                         {typeof token !== "undefined" ? (
                             <NavDropdown title={`${token.userName}`} id="basic-nav-dropdown">
+                                <NavDropdown.Item onClick={favourites}>Favourites</NavDropdown.Item>
+                                <NavDropdown.Item onClick={history}>History</NavDropdown.Item>
                                 <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
                             </NavDropdown>
                         ) : (
