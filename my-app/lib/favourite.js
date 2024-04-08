@@ -23,7 +23,7 @@ export async function addFavourite(token, uri) {
 }
 
 export async function removeFavourite(token, uri) {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/user/favourites?uri=${uri}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user/favourites?uri=${uri}`, {
         method: "DELETE",
         headers: {
             "content-type": "application/json",

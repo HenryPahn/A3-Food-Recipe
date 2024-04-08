@@ -100,11 +100,11 @@ export default function Recipes() {
             </ul>
             <Button variant="primary" onClick={handleGoBack}>Go back</Button>
             <Button variant="primary" onClick={handleFavourites}>
-              {isAdded ? 'Added' : 'Add'}
+              {isAdded ? 'Remove' : 'Add To Favourite'}
             </Button>
           </div>
         </div>
-      )}
+      )}  
     </div>
   );
 }

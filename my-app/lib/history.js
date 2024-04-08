@@ -23,7 +23,7 @@ export async function addHistory(token, uri) {
 }
 
 export async function removeHistory(token, uri) {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/user/history?uri=${uri}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user/history?uri=${uri}`, {
         method: "DELETE",
         headers: {
             "content-type": "application/json",

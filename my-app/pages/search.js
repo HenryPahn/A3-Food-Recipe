@@ -13,7 +13,7 @@ export default function SearchRecipe() {
 
   useEffect(() => {
     const getRecipes = async () => {
-      if (!q) return;
+      // if (!q) return;
 
       const app_id = process.env.APP_ID
       const app_key = process.env.APP_KEY

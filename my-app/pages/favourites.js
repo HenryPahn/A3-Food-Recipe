@@ -26,7 +26,6 @@ export default function favourites() {
             const res = await fetch(`https://api.edamam.com/api/recipes/v2/by-uri?type=public&${fetched_uri}app_id=${app_id}&app_key=${app_key}&field=mealType&field=dishType&field=image&field=label&field=healthLabels&field=yield&field=calories&field=digest&field=cuisineType&field=ingredients&field=uri`);
             const data = await res.json()
             setReceipes(data.hits)
-            console.log(data.hits[0])
         }
 
         if (!isAuthenticated()) {
