@@ -1,5 +1,5 @@
-export async function getFavourites(token) {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user/favourites`, {
+export async function getMealPlan(token) {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user/mealPlan`, {
         method: "GET",
         headers: {
             "content-type": "application/json",
@@ -10,27 +10,26 @@ export async function getFavourites(token) {
     return data;
 }
 
-export async function addFavourite(token, favourite) {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user/favourites/add`, {
+export async function updateMealPlan(token, mealPlan) {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user/mealPlan/add`, {
         method: "PUT",
         headers: {
             "content-type": "application/json",
             "Authorization": `JWT ${token}`
-        },
-        body: JSON.stringify({ favourite })
+        }, 
+        body: JSON.stringify({ mealPlan: mealPlan})
     });
     const data = await res.json();
-    return data
+    return data;
 }
 
-export async function removeFavourite(token, uri) {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user/favourites/remove`, {
+export async function clearMealPlan(token) {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user/mealPlan/remove`, {
         method: "DELETE",
         headers: {
             "content-type": "application/json",
             "Authorization": `JWT ${token}`
-        }, 
-        body: JSON.stringify({ uri: uri })
+        }
     });
     const data = await res.json();
     return data;

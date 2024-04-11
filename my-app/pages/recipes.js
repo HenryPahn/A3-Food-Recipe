@@ -14,28 +14,39 @@ export default function Recipes() {
   const [isAdded, setIsAdded] = useState(false);
 
   useEffect(() => {
-    const addToHistory = async () => {
-      let token = getToken()
-      const data = await addHistory(token, encodeURIComponent(uri))
-      console.log("History: ", data)
-    }
 
     const getRecipe = async () => {
       const app_id = process.env.APP_ID
       const app_key = process.env.APP_KEY
       const res = await fetch(`https://api.edamam.com/api/recipes/v2/by-uri?type=public&uri=${encodeURIComponent(uri)}&app_id=${app_id}&app_key=${app_key}&field=mealType&field=dishType&field=image&field=label&field=healthLabels&field=yield&field=calories&field=digest&field=cuisineType&field=ingredients&field=uri`);
       const data = await res.json()
-      setRecipe(data.hits[0].recipe)
+      if (data.hits?.length){
+        setRecipe(data.hits[0].recipe)
+
+        let newHistory = {
+          cuisineType: data.hits[0].recipe.cuisineType[0],
+          dishType: data.hits[0].recipe.dishType[0],
+          mealType: data.hits[0].recipe.mealType[0],
+          image: data.hits[0].recipe.image,
+          label: data.hits[0].recipe.label,
+          uri: encodeURIComponent(data.hits[0].recipe.uri)
+        }
+        let token = getToken()
+
+        await addHistory(token, newHistory)
+      }
+      else
+        router.back()
     }
 
     const checkFound = async () => {
       let token = getToken()
-      const uri_data = await getFavourites(token)
+      const favourites = await getFavourites(token)
 
       let currentlyFound = false;
 
-      for (let i of uri_data) {
-        if (encodeURIComponent(uri) === i) {
+      for (let favourite of favourites) {
+        if (encodeURIComponent(uri) === favourite.uri) {
           currentlyFound = true;
           break;
         }
@@ -51,7 +62,6 @@ export default function Recipes() {
       router.back()
     }
 
-    addToHistory()
     getRecipe()
     checkFound()
   }, []);
@@ -63,24 +73,37 @@ export default function Recipes() {
   const handleFavourites = async () => {
     setIsAdded(!isAdded);
     let token = getToken()
-    const uri_data = await getFavourites(token)
+    const favourites = await getFavourites(token)
 
     let currentlyFound = false;
 
-    for (let i of uri_data) {
-      if (encodeURIComponent(uri) === i) {
+    for (let favourite of favourites) {
+      if (encodeURIComponent(uri) === favourite.uri) {
         currentlyFound = true;
         break;
       }
     }
 
     if (!currentlyFound) {
-      const data = await addFavourite(token, encodeURIComponent(uri))
+      let newFavourite = {
+        cuisineType: recipe.cuisineType[0],
+        dishType: recipe.dishType[0],
+        mealType: recipe.mealType[0],
+        image: recipe.image,
+        label: recipe.label,
+        uri: encodeURIComponent(recipe.uri)
+      }
+
+      const data = await addFavourite(token, newFavourite)
       console.log(data)
     } else {
-      const data = await removeFavourite(token, encodeURIComponent(uri))
+      const data = await removeFavourite(token, uri)
       console.log(data)
     }
+  }
+
+  const handleAdd = () => {
+    router.push(`/mealPlan/add?uri=${encodeURIComponent(uri)}`)
   }
 
   return (
@@ -102,9 +125,10 @@ export default function Recipes() {
             <Button variant="primary" onClick={handleFavourites}>
               {isAdded ? 'Remove' : 'Add To Favourite'}
             </Button>
+            <Button variant="primary" onClick={handleAdd}>Add to recipe</Button>
           </div>
         </div>
-      )}  
+      )}
     </div>
   );
 }

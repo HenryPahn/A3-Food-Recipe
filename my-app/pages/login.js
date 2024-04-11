@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { authenticateUser } from "@/lib/authenticate";
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import { getToken, isAuthenticated, removeToken } from '@/lib/authenticate';
 
 
 export default function Login(props) {
@@ -11,6 +12,12 @@ export default function Login(props) {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
+
+  useEffect(() => {
+    if (isAuthenticated()) {
+      router.push('/')
+    }
+  }, []);
 
   async function handleSubmit(e) {
     e.preventDefault();

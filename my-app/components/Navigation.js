@@ -35,7 +35,7 @@ export default function Navigation() {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                         <Link href="/" passHref legacyBehavior><Nav.Link active={router.pathname === "/"} >Home</Nav.Link></Link>
-                        {typeof token !== "undefined" && <Link href="/plans" passHref legacyBehavior><Nav.Link active={router.pathname === "/plans"} >My Plans</Nav.Link></Link>}
+                        {typeof token !== "undefined" && <Link href="/mealPlan" passHref legacyBehavior><Nav.Link active={router.pathname === "/mealPlan"} >My Meal</Nav.Link></Link>}
                         <Link href="/search" passHref legacyBehavior><Nav.Link active={router.pathname === "/search"} >Search</Nav.Link></Link>
                     </Nav>
                     &nbsp;

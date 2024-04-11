@@ -3,15 +3,21 @@ import { useState, useEffect } from 'react';
 import { registerUser } from "@/lib/authenticate";
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import { isAuthenticated } from '@/lib/authenticate';
 
 export default function Register(props) {
-
   const [warning, setWarning] = useState("");
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
   const [registered, setRegister] = useState(false);
   const router = useRouter();
+
+  useEffect(() => {
+    if (isAuthenticated()) {
+      router.push('/')
+    }
+  }, []);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -23,7 +29,6 @@ export default function Register(props) {
     } catch (err) {
       setWarning(err.message);
     }
-
   }
 
   return (
