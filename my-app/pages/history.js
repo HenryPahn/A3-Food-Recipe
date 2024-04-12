@@ -19,15 +19,11 @@ export default function favourites() {
             setReceipes(reverseHistory)
         }
 
-        if (!isAuthenticated()) {
-            router.push('/login')
-        }
-
         fetchData()
     }, [])
 
     const handleView = (uri) => {
-        router.push(`/recipes?uri=${uri}`);
+        router.push(`/recipes/${uri}`);
     }
 
     const handleRemove = async (uri) => {

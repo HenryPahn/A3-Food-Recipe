@@ -1,9 +1,7 @@
 import { Card, Form, Alert, Button } from "react-bootstrap";
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { registerUser } from "@/lib/authenticate";
-import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { isAuthenticated } from '@/lib/authenticate';
 
 export default function Register(props) {
   const [warning, setWarning] = useState("");
@@ -11,20 +9,12 @@ export default function Register(props) {
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
   const [registered, setRegister] = useState(false);
-  const router = useRouter();
-
-  useEffect(() => {
-    if (isAuthenticated()) {
-      router.push('/')
-    }
-  }, []);
 
   async function handleSubmit(e) {
     e.preventDefault();
 
     try {
       await registerUser(user, password, password2);
-      //router.push("/login");
       setRegister(true);
     } catch (err) {
       setWarning(err.message);

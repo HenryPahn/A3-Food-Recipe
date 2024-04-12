@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Card, Button, Row, Col } from 'react-bootstrap';
 import { getToken, isAuthenticated } from '@/lib/authenticate';
-import { getMealPlan, clearMealPlan } from '@/lib/mealPlan';
+import { getMealPlan, removeMealPlan,clearMealPlan } from '@/lib/mealPlan';
 import { useRouter } from 'next/router';
 
 export default function Home() {
@@ -16,10 +16,6 @@ export default function Home() {
             console.log(mealPlanData)
         }
 
-        if (!isAuthenticated()) {
-            router.push('/login')
-        }
-
         fetchData()
     }, [])
 
@@ -30,6 +26,16 @@ export default function Home() {
     const handleReset = async () => {
         const token = getToken()
         await clearMealPlan(token)
+        router.reload()
+    }
+
+    const handleView = (uri) => {
+        router.push(`/recipes/${uri}`);
+    }
+
+    const handleRemove = async (uri, dayOfWeek, mealType) => {
+        const token = getToken()
+        await removeMealPlan(token, {uri, dayOfWeek, mealType})
         router.reload()
     }
 
@@ -49,7 +55,7 @@ export default function Home() {
                     <Col><h5>{dayMeal.day}</h5></Col>
                     {dayMeal.meals.length && dayMeal.meals.map((meal, index) => (
                         <Col>
-                            {meal.title.length > 0 ? (
+                            {meal.recipe.label.length > 0 ? (
                                 <Card style={{ height: "200px", marginBottom: "20px" }}>
                                     <h5>{meal.recipe.label}</h5>
                                     <Row>
@@ -58,10 +64,10 @@ export default function Home() {
                                         </Col>
                                         <Col>
                                             <Card.Body>
-                                                <Card.Title>{meal.title}</Card.Title>
-                                                <Card.Text>{meal.description}</Card.Text>
                                                 <bold><small>{meal.recipe.yield} servings</small></bold> <br/>
                                                 <bold>{Math.round(meal.recipe.calories/ meal.recipe.yield)} kcal</bold>
+                                                <Button variant="primary" onClick={() => handleView(meal.recipe.uri)}>View</Button>
+                                                <Button variant="primary" onClick={() => handleRemove(meal.recipe.uri, dayMeal.day, meal.mealType)}>Remove</Button>
                                             </Card.Body>
                                         </Col>
                                     </Row>

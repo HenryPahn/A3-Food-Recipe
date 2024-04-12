@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Button, Row, Col } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import { useRouter } from 'next/router';
-import SearchBar from '../components/SearchBar'
-import { getToken, isAuthenticated, removeToken } from '@/lib/authenticate';
-import { addFavourite, getFavourites, removeFavourite } from '@/lib/favourite';
+import SearchBar from '@/components/SearchBar'
 
 export default function SearchRecipe() {
   const router = useRouter();
   const [recipes, setReceipes] = useState([])
-  const [isAdded, setIsAdded] = useState(false);
   const { q } = router.query
 
   useEffect(() => {
@@ -32,7 +29,7 @@ export default function SearchRecipe() {
   }
 
   const handleView = (uri) => {
-    router.push(`/recipes?uri=${encodeURIComponent(uri)}`);
+    router.push(`/recipes/${encodeURIComponent(uri)}`);
   }
 
   return (

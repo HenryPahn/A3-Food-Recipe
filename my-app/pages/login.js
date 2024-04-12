@@ -1,9 +1,8 @@
 import { Card, Form, Alert, Button } from "react-bootstrap";
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { authenticateUser } from "@/lib/authenticate";
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { getToken, isAuthenticated, removeToken } from '@/lib/authenticate';
 
 
 export default function Login(props) {
@@ -12,12 +11,6 @@ export default function Login(props) {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
-
-  useEffect(() => {
-    if (isAuthenticated()) {
-      router.push('/')
-    }
-  }, []);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -50,7 +43,7 @@ export default function Login(props) {
           <Form.Group>
             <Form.Label>Password:</Form.Label>
             <Form.Control type="password" value={password} id="password" name="password" onChange={e => setPassword(e.target.value)} />
-          </Form.Group  >
+          </Form.Group>
 
           {warning && <>
             <br />

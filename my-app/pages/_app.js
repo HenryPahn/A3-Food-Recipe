@@ -1,6 +1,7 @@
 import "@/styles/globals.css";
 import '@/styles/bootstrap.min.css';
 import Layout from "@/components/Layout";
+import RouteGuard from '@/components/RouteGuard';
 import { useRouter } from 'next/router';
 
 export default function App({ Component, pageProps }) {
@@ -8,9 +9,11 @@ export default function App({ Component, pageProps }) {
 
   return (
     <>
-      <Layout key={router.pathname}>
-        <Component {...pageProps} />
-      </Layout>
+      <RouteGuard>
+        <Layout key={router.pathname}>
+          <Component {...pageProps} />
+        </Layout>
+      </RouteGuard>
     </>
   );
 }
