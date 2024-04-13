@@ -25,9 +25,9 @@ export default function RouteGuard(props) {
             setAuthorized(false);
             router.push('/login');
         } else {
-            if(AUTHENTICATE_PATH.includes(path))
-                router.push("/")
             setAuthorized(true);
+            if(isAuthenticated() && AUTHENTICATE_PATH.includes(path))
+                router.push("/")
         }
     }
 

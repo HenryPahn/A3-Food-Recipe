@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Card, Button, Row, Col } from 'react-bootstrap';
 import { getToken, isAuthenticated } from '@/lib/authenticate';
-import { getMealPlan, removeMealPlan,clearMealPlan } from '@/lib/mealPlan';
+import { getMealPlan, removeMealPlan, clearMealPlan } from '@/lib/mealPlan';
 import { useRouter } from 'next/router';
 
 export default function Home() {
@@ -35,7 +35,7 @@ export default function Home() {
 
     const handleRemove = async (uri, dayOfWeek, mealType) => {
         const token = getToken()
-        await removeMealPlan(token, {uri, dayOfWeek, mealType})
+        await removeMealPlan(token, { uri, dayOfWeek, mealType })
         router.reload()
     }
 
@@ -52,7 +52,7 @@ export default function Home() {
             </Row>
             {mealPlan?.length && mealPlan.map(dayMeal => (
                 <Row>
-                    <Col><h5>{dayMeal.day}</h5></Col>
+                    <Col xs={1}>{dayMeal.day}</Col>
                     {dayMeal.meals.length && dayMeal.meals.map((meal, index) => (
                         <Col>
                             {meal.recipe.label.length > 0 ? (
@@ -64,8 +64,8 @@ export default function Home() {
                                         </Col>
                                         <Col>
                                             <Card.Body>
-                                                <bold><small>{meal.recipe.yield} servings</small></bold> <br/>
-                                                <bold>{Math.round(meal.recipe.calories/ meal.recipe.yield)} kcal</bold>
+                                                <bold><small>{meal.recipe.yield} servings</small></bold> <br />
+                                                <bold>{Math.round(meal.recipe.calories / meal.recipe.yield)} kcal</bold>
                                                 <Button variant="primary" onClick={() => handleView(meal.recipe.uri)}>View</Button>
                                                 <Button variant="primary" onClick={() => handleRemove(meal.recipe.uri, dayMeal.day, meal.mealType)}>Remove</Button>
                                             </Card.Body>
@@ -73,7 +73,7 @@ export default function Home() {
                                     </Row>
                                 </Card>
                             ) : (
-                                <Card style={{ height: "200px",  marginBottom: "20px" }}>
+                                <Card style={{ height: "200px", marginBottom: "20px" }}>
 
                                 </Card>
                             )}
@@ -81,6 +81,34 @@ export default function Home() {
                     ))}
                 </Row>
             ))}
+
+
+            <Row>
+                {mealPlan?.length && mealPlan.map(dayMeal => (
+                    <Col style={{ padding: "0px" }}>
+                        <Row style={{ padding: "0px", width: "50%px", marginLeft: "8px" }}>{dayMeal.day}</Row>
+                        {dayMeal.meals.length && dayMeal.meals.map((meal, index) => (
+                            <Row style={{ padding: "0px", height: "180px", width: "180px", margin: "auto auto 60px 8px" }}>
+                                <Card style={{ height: "180px", width: "180px", padding: "0px" }}>
+
+                                    {meal.recipe.label.length > 0 && (
+                                        <Card.Img variant="top" src={meal.recipe.image} style={{ height: "178px", width: "178px", margin: "0 0 0 0", borderRadius: "6px" }} />
+
+                                    )}
+                                </Card>
+                                <Row>
+                                    <Col xs={8} style={{ padding: "0px" }}>
+                                        <small style={{ fontSize: "10px", padding: "0px", margin: "0px" }}>{meal.recipe.label}</small>
+                                    </Col>
+                                    <Col xs lg={3} style={{ padding: "0px" }}>
+                                        <img src='/images/remove.png' style={{ padding: "0px", width: "40%" }} />
+                                    </Col>
+                                </Row>
+                            </Row>
+                        ))}
+                    </Col>
+                ))}
+            </Row>
         </>
     );
 }

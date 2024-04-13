@@ -27,9 +27,9 @@ export default function Navigation() {
     }
 
     return (<>
-        <Navbar expand="lg" className="fixed-top navbar-dark bg-primary">
+        <Navbar expand="lg" style={{ backgroundColor: "#2E294E", fontColor: "#2E294E" }} className="fixed-top navbar-dark ">
             <Container>
-                <Navbar.Brand>Food Recipe</Navbar.Brand>
+                <Navbar.Brand style={{ backgroundColor: "#2E294E", fontColor: "#2E294E" }}>Food Recipe</Navbar.Brand>
 
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
