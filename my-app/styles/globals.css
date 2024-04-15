@@ -1,0 +1,168 @@
+.remove-button {
+    background-color: #91CB3E;
+}
+
+.remove-button:hover {
+    background-color: #99f11e;
+}
+
+.pop-up-heading {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transform: scale(1);
+}
+
+.pop-up-heading:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.navbar {
+    background-color: #7FB237 !important;
+    padding: 10px;
+    color: white;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    right: 0;
+    border-radius: 5px;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: right;
+    border-radius: 5px;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+    border-radius: 5px;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover {
+    background-color: #3e8e41;
+}
+
+.dropbtn {
+    background-color: #7FB237;
+    border: none;
+    color: #fff;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.card {
+    width: 18rem;
+    margin-bottom: 20px;
+}
+
+.recipe-page {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 20px;
+}
+
+.recipe-title {
+    font-size: 3rem;
+    color: #333;
+    font-weight: bold;
+}
+
+.recipe-content {
+    display: flex;
+    gap: 20px;
+}
+
+.recipe-image-wrapper {
+    flex: 1;
+}
+
+.recipe-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.recipe-info {
+    flex: 2;
+}
+
+.ingredients-list {
+    list-style: none;
+    padding: 0;
+}
+
+.ingredient-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ingredient-image {
+    width: 50px;
+    height: auto;
+}
+
+.nutrition-info {
+    background-color: #f8f8f8;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 8px;
+}
+
+.diet-tags {
+    list-style: none;
+    padding: 0;
+}
+
+.diet-tag {
+    display: inline-block;
+    background-color: #e0e0e0;
+    padding: 5px 10px;
+    margin: 5px;
+    border-radius: 15px;
+}
+
+.view-recipe-btn {
+    background-color: #7FB237;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 5px;
+}
+
+.view-recipe-btn:hover {
+    background-color: #6ea032;
+}
+
+/* Add responsiveness */
+@media (max-width: 768px) {
+    .recipe-content {
+        flex-direction: column;
+    }
+}

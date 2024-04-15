@@ -29,6 +29,7 @@ export default function Recipes() {
       const data = await res.json()
       if (data.hits?.length) {
         setRecipe(data.hits[0].recipe)
+        console.log(data.hits[0].recipe)
 
         let newHistory = {
           cuisineType: data.hits[0].recipe.cuisineType[0],
@@ -132,57 +133,95 @@ export default function Recipes() {
   }
 
   return (
-    <div>
-      <h1>Meal Detail</h1>
-      {typeof recipe !== "undefined" && (
-        <div>
-          <div>
-            <img src={recipe.image} alt={recipe.label} style={{ maxWidth: '100%', height: 'auto' }} />
-          </div>
-          <div>
-            <h1>{recipe.label}</h1>
-            <ul>
-              {recipe.ingredients.map((ingredient, index) => (
-                <li key={index}>{ingredient.text}</li>
-              ))}
-            </ul>
-            {!displayForm ? (
-              <>
-                <Button variant="primary" onClick={handleGoBack}>Go back</Button>
-                <Button variant="primary" onClick={handleFavourites}>
-                  {isFavourited ? 'Remove' : 'Add To Favourite'}
-                </Button>
-                <Button variant="primary" onClick={handleDisplayForm}>Add to recipe</Button>
-              </>
-            ) : (
-              <>
-                <h1>Add recipe to meal plan</h1>
+    // <div>
+    //   <h1>{recipe.label}</h1>
+    //   {typeof recipe !== "undefined" && (
+    //     <div>
+    //       <div>
+    //         <img src={recipe.image} alt={recipe.label} style={{ maxWidth: '100%', height: 'auto' }} />
+    //       </div>
+    //       <div>
 
-                <label for="dayOfWeek">Choose a day of the week:</label>
-                <select id="dayOfWeek" value={dayOfWeek} onChange={(e) => setDayOfWeek(e.target.value)} name="dayOfWeek">
-                  <option value="Monday">Monday</option>
-                  <option value="Tuesday">Tuesday</option>
-                  <option value="Wednesday">Wednesday</option>
-                  <option value="Thursday">Thursday</option>
-                  <option value="Friday">Friday</option>
-                  <option value="Saturday">Saturday</option>
-                  <option value="Sunday">Sunday</option>
-                </select><br />
+    //         <ul>
+    //           {recipe.ingredients.map((ingredient, index) => (
+    //             <li key={index}>{ingredient.text}</li>
+    //           ))}
+    //         </ul>
+    //         {!displayForm ? (
+    //           <>
+    //             <Button variant="primary" onClick={handleGoBack}>Go back</Button>
+    //             <Button variant="primary" onClick={handleFavourites}>
+    //               {isFavourited ? 'Remove' : 'Add To Favourite'}
+    //             </Button>
+    //             <Button variant="primary" onClick={handleDisplayForm}>Add to recipe</Button>
+    //           </>
+    //         ) : (
+    //           <>
+    //             <h1>Add recipe to meal plan</h1>
 
-                <label for="mealType">Choose a meal:</label>
-                <select id="mealType" value={mealType} onChange={(e) => setMealType(e.target.value)} name="mealType">
-                  <option value="Breakfast">Breakfast</option>
-                  <option value="Lunch">Lunch</option>
-                  <option value="Dinner">Dinner</option>
-                </select><br />
+    //             <label for="dayOfWeek">Choose a day of the week:</label>
+    //             <select id="dayOfWeek" value={dayOfWeek} onChange={(e) => setDayOfWeek(e.target.value)} name="dayOfWeek">
+    //               <option value="Monday">Monday</option>
+    //               <option value="Tuesday">Tuesday</option>
+    //               <option value="Wednesday">Wednesday</option>
+    //               <option value="Thursday">Thursday</option>
+    //               <option value="Friday">Friday</option>
+    //               <option value="Saturday">Saturday</option>
+    //               <option value="Sunday">Sunday</option>
+    //             </select><br />
 
-                <Button variant="primary" onClick={handleCancel}>Cancel</Button>
-                <Button variant="primary" onClick={handleAdd}>Add</Button>
-              </>
-            )}
-          </div>
+    //             <label for="mealType">Choose a meal:</label>
+    //             <select id="mealType" value={mealType} onChange={(e) => setMealType(e.target.value)} name="mealType">
+    //               <option value="Breakfast">Breakfast</option>
+    //               <option value="Lunch">Lunch</option>
+    //               <option value="Dinner">Dinner</option>
+    //             </select><br />
+
+    //             <Button variant="primary" onClick={handleCancel}>Cancel</Button>
+    //             <Button variant="primary" onClick={handleAdd}>Add</Button>
+    //           </>
+    //         )}
+    //       </div>
+    //     </div>
+    //   )}
+    // </div>
+    <div className="recipe-page">
+      <section className="recipe-content">
+        <div className="recipe-image-wrapper">
+          <img src={recipe.image} alt={`Image of ${recipe.label}`} className="recipe-image" />
         </div>
-      )}
+
+
+        <div className="recipe-info">
+          <h1 className="recipe-title">{recipe.label}</h1>
+          <ul className="diet-tags">
+            {recipe.healthLabels.map((label, index) => (
+              <li key={index} className="diet-tag">{label}</li>
+            ))}
+          </ul>
+        </div>
+      </section>
+      <div>
+        <h2>Ingredients</h2>
+        <ul className="ingredients-list">
+          {recipe.ingredients.map((ingredient, index) => (
+            <li key={index} className="ingredient-item">
+              <img src={ingredient.image} alt={ingredient.food} className="ingredient-image" />
+              <span>{ingredient.text}</span>
+            </li>
+          ))}
+        </ul>
+
+        <h2>Nutritional Information</h2>
+        <div className="nutrition-info">
+          <p><strong>Calories:</strong> {Math.round(recipe.calories)} kcal</p>
+          {/* Map through each nutrient for display */}
+        </div>
+
+
+
+        <button className="view-recipe-btn" onClick={() => window.open(recipe.uri)}>View Full Recipe</button>
+      </div>
     </div>
   );
 }

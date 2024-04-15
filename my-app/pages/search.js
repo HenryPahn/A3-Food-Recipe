@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Row, Col } from 'react-bootstrap';
 import { useRouter } from 'next/router';
 import SearchBar from '@/components/SearchBar'
 
@@ -10,8 +10,6 @@ export default function SearchRecipe() {
 
   useEffect(() => {
     const getRecipes = async () => {
-      // if (!q) return;
-
       const app_id = process.env.APP_ID
       const app_key = process.env.APP_KEY
       const res = await fetch(`https://api.edamam.com/api/recipes/v2?type=public&q=${q}&app_id=${app_id}&app_key=${app_key}&field=mealType&field=dishType&field=image&field=label&field=healthLabels&field=yield&field=calories&field=digest&field=cuisineType&field=ingredients&field=uri`);
@@ -23,32 +21,50 @@ export default function SearchRecipe() {
     getRecipes()
   }, [q]);
 
-  const onSearch = async (search_query) => {
-    console.log("query: ", search_query)
-    router.push(`/search?q=${search_query}`);
-  }
-
   const handleView = (uri) => {
     router.push(`/recipes/${encodeURIComponent(uri)}`);
   }
 
   return (
     <>
-      <SearchBar onSearch={onSearch} />
-      {recipes?.length > 0 && recipes.map((attribute, index) => (
-        <div className="card" style={{ width: '18rem' }}>
+      <div className="card-container">
+        {recipes?.length > 0 ? recipes.map((attribute, index) => (
+          <div className="card pop-up-heading" style={{ width: '18rem' }} onClick={() => handleView(attribute.recipe.uri)}>
+            <div className='card-header' style={{ padding: "0px" }}>
+              <div>
+                <img src={attribute.recipe.image} className="card-img-top" alt={attribute.recipe.label} style={{ width: "286px", height: "286px" }} />
+              </div>
+            </div>
+            <div className="card-body">
+              <h3 className="card-title">{attribute.recipe.label}</h3>
+              <div>
+                {attribute.recipe.healthLabels.map((label, index) => (
+                  <span key={index} className="badge bg-secondary me-1">{label}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        )) : (
+          <p>Not found</p>
+        )}
+      </div>
+    </>
+  );
+}
+
+{/* <div className="card" style={{ width: '18rem' }}>
           <div className='card-header'>
             <div>
+              <h3 className="card-title">{attribute.recipe.label}</h3>
               <img src={attribute.recipe.image} className="card-img-top" alt={attribute.recipe.label} />
             </div>
-            <div className="mb-2">
-              <h3 className="card-title">{attribute.recipe.label}</h3>
+          </div>
+          <div className="card-body">
+            <div>
               {attribute.recipe.healthLabels.map((label, index) => (
                 <span key={index} className="badge bg-secondary me-1">{label}</span>
               ))}
             </div>
-          </div>
-          <div className="card-body">
             <div>
               <h6>{attribute.recipe.yield} servings</h6>
               <h4>{Math.round(attribute.recipe.calories / attribute.recipe.yield)} <span style={{ fontSize: "70%" }}>kcal</span></h4>
@@ -72,9 +88,4 @@ export default function SearchRecipe() {
             </div>
             <Button variant="primary" onClick={() => handleView(attribute.recipe.uri)}>View Recipe</Button>
           </div>
-        </div>
-      ))}
-    </>
-  );
-}
-
+        </div> */}

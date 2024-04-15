@@ -4,9 +4,8 @@ import Navigation from "./Navigation.js";
 export default function Layout(props) {
     return (
         <>
-            <Navigation />
-            <br />
-            <Container>
+            <Navigation/>
+            <Container style={{ marginTop: "120px" }}>
                 {props.children}
             </Container>
             <br />
