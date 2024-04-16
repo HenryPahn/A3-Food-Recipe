@@ -9,7 +9,7 @@ import { getHistory, removeHistory } from '@/lib/history';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 
-export default function favourites() {
+export default function History() {
     const router = useRouter();
     const [recipes, setReceipes] = useState([])
 
