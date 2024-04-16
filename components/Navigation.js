@@ -43,18 +43,18 @@ export default function Navigation() {
                             <div className="dropdown">
                               <button className="dropbtn">admin <FontAwesomeIcon icon={faCaretDown}/></button>
                               <div className="dropdown-content">
-                                <a href="/" >Home</a>
-                                <a href="/mealPlan" >Meal Plan</a>
-                                <a href="/favourites" >Favourites</a>
-                                <a href="/history" >History</a>
-                                <a href="#" onClick={logout} >Logout</a>
+                                <Link href="/">Home</Link>
+                                <Link href="/mealPlan">Meal Plan</Link>
+                                <Link href="/favourites">Favourites</Link>
+                                <Link href="/history">History</Link>
+                                <Link href="#" onClick={logout}>Logout</Link>
                               </div>
                             </div>
                           </div>
                         ) : (
                             <>
-                                <Button style={{ backgroundColor: "#7FB237", border: "0px"}}><a style={{ color: router.pathname === "/login" ? "yellow" : "#fff", textDecoration: "none" }} href="/login">Login</a></Button>
-                                <Button style={{ backgroundColor: "#7FB237", border: "0px"}}><a style={{ color: router.pathname === "/register" ? "yellow" : "#fff", textDecoration: "none" }} href="/register">Register</a></Button>
+                                <Button style={{ backgroundColor: "#7FB237", border: "0px"}}><Link style={{ color: router.pathname === "/login" ? "yellow" : "#fff", textDecoration: "none" }} href="/login">Login</Link></Button>
+                                <Button style={{ backgroundColor: "#7FB237", border: "0px"}}><Link style={{ color: router.pathname === "/register" ? "yellow" : "#fff", textDecoration: "none" }} href="/register">Register</Link></Button>
                             </>
                         )}
                     </Nav>

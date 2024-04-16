@@ -17,7 +17,6 @@ export default function Home() {
             const token = getToken()
             const mealPlanData = await getMealPlan(token);
             setMealPlan(mealPlanData)
-            console.log(mealPlanData)
         }
 
         fetchData()
@@ -44,11 +43,11 @@ export default function Home() {
 
     return (
         <>
-            {mealPlan?.length && mealPlan.map(dayMeal => (
-                <Row>
+            {mealPlan?.length && mealPlan.map((dayMeal, meal_index) => (
+                <Row key={meal_index}>
                     <Col xs={1} style={{ borderBottom: "1px solid black", padding: "0px", height: "30px", fontWeight: "bold" }}>{dayMeal.day}</Col>
                     {dayMeal.meals.length && dayMeal.meals.map((meal, index) => (
-                        <Col>
+                        <Col key={index}>
                             {meal.recipe.label.length > 0 ? (
                                 <Card 
                                 className="pop-up-heading" 

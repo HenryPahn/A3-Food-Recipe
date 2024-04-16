@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Button, Row, Col } from 'react-bootstrap';
 import { useRouter } from 'next/router';
 import SearchBar from '@/components/SearchBar'
+import Image from 'next/image'
 
 export default function SearchRecipe() {
   const router = useRouter();
@@ -29,10 +30,10 @@ export default function SearchRecipe() {
     <>
       <div className="card-container">
         {recipes?.length > 0 ? recipes.map((attribute, index) => (
-          <div className="card pop-up-heading" style={{ width: '18rem' }} onClick={() => handleView(attribute.recipe.uri)}>
+          <div className="card pop-up-heading" style={{ width: '18rem' }} onClick={() => handleView(attribute.recipe.uri)} key={index}>
             <div className='card-header' style={{ padding: "0px" }}>
               <div>
-                <img src={attribute.recipe.image} className="card-img-top" alt={attribute.recipe.label} style={{ width: "286px", height: "286px" }} />
+                <Image src={attribute.recipe.image} className="card-img-top" width={286} height={286} alt={attribute.recipe.label} />
               </div>
             </div>
             <div className="card-body">

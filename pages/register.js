@@ -4,7 +4,7 @@ import { registerUser } from "@/lib/authenticate";
 import Link from 'next/link';
 import styles from '../styles/register.module.css'
 import { useRouter } from 'next/router';
-
+import Image from 'next/image'
 
 export default function Register(props) {
   const router = useRouter();
@@ -47,7 +47,7 @@ export default function Register(props) {
                 <button type="submit" className={styles["btn-signin"]}>Register</button>
               </div>
               <div className={styles["login"]}>
-                <a href="/login">Have an account?</a>
+                <Link href="/login">Have an account?</Link>
               </div>
             </form>
           </>) : (
@@ -58,7 +58,7 @@ export default function Register(props) {
           )}
         </div>
         <div className={styles["image-side"]}>
-          <img src={`images/register.png`} />
+          <Image src='/images/register.png' alt="register" width={0} height={0} unoptimized/>
         </div>
       </div>
 

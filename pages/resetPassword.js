@@ -4,7 +4,7 @@ import { resetPassword } from "@/lib/authenticate";
 import Link from 'next/link';
 import styles from '../styles/register.module.css'
 import { useRouter } from 'next/router';
-
+import Image from 'next/image'
 
 export default function Reset(props) {
   const router = useRouter();
@@ -56,7 +56,7 @@ export default function Reset(props) {
           )}
         </div>
         <div className={styles["image-side"]}>
-          <img src={`images/register.png`} />
+          <Image src='/images/reset.png' alt="reset" width={0} height={0} unoptimized/>
         </div>
       </div>
 

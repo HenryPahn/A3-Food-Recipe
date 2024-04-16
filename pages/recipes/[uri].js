@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import styles from '../../styles/recipe.module.css';
-
+import Image from 'next/image'
 
 export default function Recipes() {
   const router = useRouter()
@@ -65,7 +65,7 @@ export default function Recipes() {
 
     getRecipe()
     checkFound()
-  }, [uri]);
+  }, [uri, recipe]);
 
   const handleGoBack = () => {
     router.back();
@@ -140,7 +140,7 @@ export default function Recipes() {
         <div className="recipe-page">
           <section className="recipe-content">
             <div className="recipe-image-wrapper">
-              <img src={recipe.image} alt={`Image of ${recipe.label}`} className="recipe-image" />
+              <Image src={recipe.image}  width="100" height="200" alt="recipe" style={{ height: "380px", width: "380px" }}  className="recipe-image" unoptimized/>
               <FontAwesomeIcon icon={isFavourited ? faHeart : farHeart} className="heart-icon" onClick={handleFavourites} style={{ color: "#7FB237" }} />
             </div>
 
@@ -160,7 +160,7 @@ export default function Recipes() {
             {recipe.ingredients.map((ingredient, index) => (
               <li key={index} className="ingredient-item pop-up-heading">
                 <div className="ingredient-image-wrapper">
-                  <img src={ingredient.image} alt={ingredient.food} className="ingredient-image" />
+                  <Image src={ingredient.image} width={0} height={0} alt="ingredient" className="ingredient-image" unoptimized/>
                 </div>
                 <span className="ingredient-text">{ingredient.text}</span>
               </li>
