@@ -3,7 +3,8 @@
 }
 
 .remove-button:hover {
-    background-color: #99f11e;
+    background-color: #fff;
+    color: #91CB3E;
 }
 
 .pop-up-heading {
@@ -138,12 +139,15 @@
 }
 
 .diet-tag {
-    display: inline-block;
+    display: block;
     background-color: #e0e0e0;
     padding: 5px 10px;
     margin: 5px;
     border-radius: 15px;
+    text-align: center;
 }
+
+
 
 .view-recipe-btn {
     background-color: #7FB237;
@@ -160,9 +164,86 @@
     background-color: #6ea032;
 }
 
-/* Add responsiveness */
 @media (max-width: 768px) {
     .recipe-content {
         flex-direction: column;
     }
+}
+
+.ingredients-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    background: #9FC669;
+    border-radius: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.ingredients-title {
+    text-align: center;
+    padding-top: 15px;
+    margin-bottom: 15px;
+    font-size: 2.5rem;
+    color: #fff;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.ingredient-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border-bottom: 1px solid #fff;
+    font-size: 1rem;
+    color: #fff;
+}
+
+.ingredient-item:last-child {
+    border-bottom: none;
+}
+
+.ingredient-image-wrapper {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.ingredient-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.ingredient-item:hover {
+    background-color: #F7F7F7;
+    color: #000;
+    border-radius: 50px;
+}
+
+.recipe-image-wrapper>img {
+    border-radius: 10px;
+}
+
+.recipe-image-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.recipe-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.heart-icon {
+    position: absolute;
+    bottom: 25px;
+    right: 15px;
+    color: #A0A0A0;
+    font-size: 35px;
 }

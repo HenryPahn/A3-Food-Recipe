@@ -1,4 +1,4 @@
-import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { Container, Nav, Navbar, Button } from "react-bootstrap";
 import Link from "next/link";
 import { useRouter } from 'next/router';
 import { useState, useEffect } from "react";
@@ -39,13 +39,6 @@ export default function Navigation() {
                     </Nav>
                     <Nav className="ms-auto">
                         {typeof token !== "undefined" ? (
-                            // <NavDropdown title={token.userName} id="basic-nav-dropdown" >
-                            //     <NavDropdown.Item style={{ color: "#000", textAlign: "right", left: "auto" }} onClick={home}>Home</NavDropdown.Item>
-                            //     <NavDropdown.Item style={{ color: "#000", textAlign: "right" }} onClick={mealPlan}>Meal Plan</NavDropdown.Item>
-                            //     <NavDropdown.Item style={{ color: "#000", textAlign: "right" }} onClick={favourites}>Favourites</NavDropdown.Item>
-                            //     <NavDropdown.Item style={{ color: "#000", textAlign: "right" }} onClick={history}>History</NavDropdown.Item>
-                            //     <NavDropdown.Item style={{ color: "#000", textAlign: "right" }} onClick={logout}>Logout</NavDropdown.Item>
-                            // </NavDropdown>
                             <div className="customNavbar">
                             <div className="dropdown">
                               <button className="dropbtn">admin <FontAwesomeIcon icon={faCaretDown}/></button>
@@ -60,8 +53,8 @@ export default function Navigation() {
                           </div>
                         ) : (
                             <>
-                                <Link href="/login" passHref legacyBehavior><Nav.Link active={router.pathname === "/login"}>Login</Nav.Link></Link>
-                                <Link href="/register" passHref legacyBehavior><Nav.Link active={router.pathname === "/register"}>Register</Nav.Link></Link>
+                                <Button style={{ backgroundColor: "#7FB237", border: "0px"}}><a style={{ color: router.pathname === "/login" ? "yellow" : "#fff", textDecoration: "none" }} href="/login">Login</a></Button>
+                                <Button style={{ backgroundColor: "#7FB237", border: "0px"}}><a style={{ color: router.pathname === "/register" ? "yellow" : "#fff", textDecoration: "none" }} href="/register">Register</a></Button>
                             </>
                         )}
                     </Nav>

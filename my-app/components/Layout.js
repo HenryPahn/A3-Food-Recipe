@@ -5,7 +5,7 @@ export default function Layout(props) {
     return (
         <>
             <Navigation/>
-            <Container style={{ marginTop: "120px" }}>
+            <Container style={{ marginTop: "120px"}}>
                 {props.children}
             </Container>
             <br />

@@ -2,8 +2,8 @@ import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { isAuthenticated } from '@/lib/authenticate';
 
-const PUBLIC_PATHS = ['/', '/login', '/register', '/search', '/_error'];
-const AUTHENTICATE_PATH = ['/login', '/register']
+const PUBLIC_PATHS = ['/', '/login', '/register', '/search', '/resetPassword','/_error'];
+const AUTHENTICATE_PATH = ['/login', '/register', "/resetPassword"]
 
 export default function RouteGuard(props) {
     const router = useRouter();

@@ -1,0 +1,67 @@
+.add-button {
+    background-color: orange;
+    border: 0px;
+    margin: 10px;
+}
+
+.add-button:hover {
+    background-color: #fff;
+    border: 1px solid orange;
+    color: orange
+}
+
+.cancel-button {
+    background-color: red;
+    border: 0px;
+    margin: 10px;
+}
+
+.cancel-button:hover {
+    background-color: #fff;
+    border: 1px solid red;
+    color: red
+}
+
+.form-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.add-form {
+    margin-bottom: 1rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-label {
+    display: block;
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.form-select {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background-color: #f8f8f8;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.form-select:focus {
+    border-color: #007bff;
+    outline: none;
+    background-color: #fff;
+}
+
+.button-group {
+    text-align: center;
+}

@@ -21,7 +21,7 @@ export default function Home() {
         }
 
         fetchData()
-    }, [])
+    }, [mealPlan])
 
     const handleAdd = () => {
         router.push("/search")
@@ -40,7 +40,6 @@ export default function Home() {
     const handleRemove = async (uri, dayOfWeek, mealType) => {
         const token = getToken()
         await removeMealPlan(token, { uri, dayOfWeek, mealType })
-        router.reload()
     }
 
     return (
@@ -51,23 +50,53 @@ export default function Home() {
                     {dayMeal.meals.length && dayMeal.meals.map((meal, index) => (
                         <Col>
                             {meal.recipe.label.length > 0 ? (
-                                <Card className="pop-up-heading" style={{ height: "200px", marginBottom: "20px", padding: "15px", boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 2px 5px 0 rgba(0, 0, 0, 0.19)" }} onClick={() => handleView(meal.recipe.uri)}>
-                                    <h6  style={{ fontWeight: "bold", color: "#7FB237" }}>{meal.recipe.label}</h6>
-                                    <Row>
-                                        <Col xs={4} style={{ padding: "0", margin: "auto 10px" }}>
-                                            <Card.Img variant="top" src={meal.recipe.image} style={{ width: "140px", height: "140px", borderRadius: "5px" }} />
-                                        </Col>
-                                        <Col>
-                                            <Card.Body style={{ padding: "10px" }}>
+                                <Card 
+                                className="pop-up-heading" 
+                                style={{ 
+                                    height: "200px", 
+                                    width: "370px", 
+                                    marginBottom: "20px", 
+                                    padding: "15px", 
+                                    boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 2px 5px 0 rgba(0, 0, 0, 0.19)" 
+                                }} 
+                                onClick={() => handleView(meal.recipe.uri)}
+                            >
+                                <h6 style={{ fontWeight: "bold", color: "#7FB237" }}>{meal.recipe.label}</h6>
+                                <Row>
+                                    <Col xs={4} style={{ padding: "0", margin: "auto 10px" }}>
+                                        <Card.Img variant="top" src={meal.recipe.image} style={{ width: "140px", height: "140px", borderRadius: "5px" }} />
+                                    </Col>
+                                    <Col>
+                                        <Card.Body style={{ 
+                                            display: 'flex', 
+                                            flexDirection: 'column', 
+                                            justifyContent: 'space-between', 
+                                            height: '100%', 
+                                            padding: "10px" 
+                                        }}>
+                                            <div>
                                                 <em>{meal.recipe.yield} servings</em> <br />
                                                 <em style={{ fontSize: "30px", textAlign: "center" }}>{Math.round(meal.recipe.calories / meal.recipe.yield)} kcal</em>
-                                                <Button className="remove-button" style={{  border: "0px", marginTop: "15px" }} onClick={() => handleRemove(meal.recipe.uri, dayMeal.day, meal.mealType)}><FontAwesomeIcon icon={faTrash}  style={{ color: "fff" }}></FontAwesomeIcon>  Remove</Button>
-                                            </Card.Body>
-                                        </Col>
-                                    </Row>
-                                </Card>
+                                            </div>
+                                            <Button 
+                                                className="remove-button" 
+                                                style={{  
+                                                    border: "0px", 
+                                                    alignSelf: 'flex-end' 
+                                                }} 
+                                                onClick={(e) => {
+                                                    e.stopPropagation(); 
+                                                    handleRemove(meal.recipe.uri, dayMeal.day, meal.mealType);
+                                                }}
+                                            >
+                                                <FontAwesomeIcon icon={faTrash}></FontAwesomeIcon>
+                                            </Button>
+                                        </Card.Body>
+                                    </Col>
+                                </Row>
+                            </Card>
                             ) : (
-                                <Card className="pop-up-heading" style={{ height: "200px", marginBottom: "20px", padding: "10px", boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 2px 5px 0 rgba(0, 0, 0, 0.19)", display: "flex", justifyContent: "center", alignItems: "center" }} onClick={handleAdd}>
+                                <Card className="pop-up-heading" style={{ height: "200px", width: "370px", marginBottom: "20px", padding: "10px", boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 2px 5px 0 rgba(0, 0, 0, 0.19)", display: "flex", justifyContent: "center", alignItems: "center" }} onClick={handleAdd}>
                                     <FontAwesomeIcon icon={faPlus}  style={{ color: "CCD3CA" }} size="2xl"></FontAwesomeIcon>
                                 </Card>
                             )}

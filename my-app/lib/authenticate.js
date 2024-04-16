@@ -61,3 +61,21 @@ export async function registerUser(userName, password, password2) {
         throw new Error(data.message);
     }
 }
+
+export async function resetPassword(userName, password, password2) {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/user/resetPassword`, {
+        method: "POST",
+        body: JSON.stringify({ userName: userName, password: password, password2: password2 }),
+        headers: {
+            "content-type": "application/json"
+        }
+    });
+
+    const data = await res.json();
+    
+    if (res.status === 200) {
+        return true;
+    } else {
+        throw new Error(data.message);
+    }
+}

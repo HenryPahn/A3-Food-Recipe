@@ -45,47 +45,9 @@ export default function SearchRecipe() {
             </div>
           </div>
         )) : (
-          <p>Not found</p>
+          <p>Recipe of {q} is not found</p>
         )}
       </div>
     </>
   );
 }
-
-{/* <div className="card" style={{ width: '18rem' }}>
-          <div className='card-header'>
-            <div>
-              <h3 className="card-title">{attribute.recipe.label}</h3>
-              <img src={attribute.recipe.image} className="card-img-top" alt={attribute.recipe.label} />
-            </div>
-          </div>
-          <div className="card-body">
-            <div>
-              {attribute.recipe.healthLabels.map((label, index) => (
-                <span key={index} className="badge bg-secondary me-1">{label}</span>
-              ))}
-            </div>
-            <div>
-              <h6>{attribute.recipe.yield} servings</h6>
-              <h4>{Math.round(attribute.recipe.calories / attribute.recipe.yield)} <span style={{ fontSize: "70%" }}>kcal</span></h4>
-            </div>
-            <div>
-              <ul>
-                <li>{attribute.recipe.digest[2].label.toUpperCase()} {Math.round(attribute.recipe.digest[2].total)} {attribute.recipe.digest[2].unit}</li>
-                <li>{attribute.recipe.digest[0].label.toUpperCase()} {Math.round(attribute.recipe.digest[0].total)} {attribute.recipe.digest[0].unit}</li>
-                <li>{attribute.recipe.digest[1].label.toUpperCase()} {Math.round(attribute.recipe.digest[1].total)} {attribute.recipe.digest[1].unit}</li>
-              </ul>
-            </div>
-            <div>
-              <ul style={{ listStyleType: "none" }}>
-                <li>{attribute.recipe.digest[3].label} {Math.round(attribute.recipe.digest[3].total)} {attribute.recipe.digest[3].unit}</li>
-                <li>{attribute.recipe.digest[4].label} {Math.round(attribute.recipe.digest[4].total)} {attribute.recipe.digest[4].unit}</li>
-                <li>{attribute.recipe.digest[5].label} {Math.round(attribute.recipe.digest[5].total)} {attribute.recipe.digest[5].unit}</li>
-                <li>{attribute.recipe.digest[6].label} {Math.round(attribute.recipe.digest[6].total)} {attribute.recipe.digest[6].unit}</li>
-                <li>{attribute.recipe.digest[7].label} {Math.round(attribute.recipe.digest[7].total)} {attribute.recipe.digest[7].unit}</li>
-                <li>{attribute.recipe.digest[8].label} {Math.round(attribute.recipe.digest[8].total)} {attribute.recipe.digest[8].unit}</li>
-              </ul>
-            </div>
-            <Button variant="primary" onClick={() => handleView(attribute.recipe.uri)}>View Recipe</Button>
-          </div>
-        </div> */}
