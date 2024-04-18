@@ -22,7 +22,7 @@ export default function Favourites() {
         }
 
         fetchData()
-    }, [])
+    }, [recipes])
 
     const handleView = (uri) => {
         router.push(`/recipes/${uri}`);
@@ -31,7 +31,6 @@ export default function Favourites() {
     const handleRemove = async (uri) => {
         let token = getToken()
         await removeFavourite(token, uri)
-        router.push("/favourites")
     }
 
     return (

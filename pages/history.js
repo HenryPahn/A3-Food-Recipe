@@ -22,7 +22,7 @@ export default function History() {
         }
 
         fetchData()
-    }, [])
+    }, [recipes])
 
     const handleView = (uri) => {
         router.push(`/recipes/${uri}`);
@@ -31,7 +31,6 @@ export default function History() {
     const handleRemove = async (uri) => {
         let token = getToken()
         await removeHistory(token, uri)
-        router.reload()
     }
 
     return (

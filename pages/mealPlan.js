@@ -29,7 +29,6 @@ export default function Home() {
     const handleReset = async () => {
         const token = getToken()
         await clearMealPlan(token)
-        router.reload()
     }
 
     const handleView = (uri) => {
