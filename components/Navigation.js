@@ -41,7 +41,7 @@ export default function Navigation() {
                         {typeof token !== "undefined" ? (
                             <div className="customNavbar">
                             <div className="dropdown">
-                              <button className="dropbtn">admin <FontAwesomeIcon icon={faCaretDown}/></button>
+                              <button className="dropbtn">{token.userName} <FontAwesomeIcon icon={faCaretDown}/></button>
                               <div className="dropdown-content">
                                 <Link href="/">Home</Link>
                                 <Link href="/mealPlan">Meal Plan</Link>
