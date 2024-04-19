@@ -15,10 +15,11 @@ export default function Navigation() {
         setToken(readToken())
     }, [])
 
-    function logout() {
+    function logout(e) {
+        e.preventDefault();
         removeToken();
         setToken(undefined)
-        router.push('/login');
+        router.push("/login")
     }
     let home = () => {
         router.push('/');
