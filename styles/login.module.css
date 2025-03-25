@@ -5,6 +5,8 @@
     margin-top: 15%;
     border-radius: 20px;
     box-shadow: 10px 12px 30px 7px rgba(0, 0, 0, 0.2);
+    font-size: 20px;
+
 }
 
 .image-side,
@@ -93,6 +95,8 @@
     color: #fff;
     text-decoration: none;
     padding-left: 15px;
+    font-size: 20px;
+
 }
 
 .forgot-password a:hover {

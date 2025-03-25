@@ -2,7 +2,8 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
+  "/recipes/[uri]": "pages/recipes/[uri].js",
+  "/history": "pages/history.js",
   "/mealPlan": "pages/mealPlan.js",
-  "/favourites": "pages/favourites.js",
-  "/history": "pages/history.js"
+  "/": "pages/index.js"
 }
