@@ -1,1 +1,1 @@
-{}
+{"/_app":"pages/_app.js","/_document":"pages/_document.js","/favourites":"pages/favourites.html","/":"pages/index.html","/history":"pages/history.html","/login":"pages/login.html","/mealPlan":"pages/mealPlan.html","/recipes/[uri]":"pages/recipes/[uri].html","/register":"pages/register.html","/resetPassword":"pages/resetPassword.html","/search":"pages/search.html","/_error":"pages/_error.js","/404":"pages/404.html"}

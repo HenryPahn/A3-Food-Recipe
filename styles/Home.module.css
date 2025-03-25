@@ -16,7 +16,7 @@
   }
   
   .subtitle {
-    font-size: 20px;
+    font-size: 18px;
     color: #555;
     max-width: 600px;
     margin-top: 10px;
@@ -32,7 +32,7 @@
   }
   
   .sectionTitle {
-    font-size: 26px;
+    font-size: 24px;
     color: #444;
   }
   
@@ -40,7 +40,7 @@
     list-style: none;
     padding: 0;
     margin-top: 10px;
-    font-size: 20px;
+    font-size: 18px;
   }
   
   .list li {
@@ -56,7 +56,7 @@
   
   .footer {
     margin-top: 20px;
-    font-size: 20px;
+    font-size: 18px;
     color: #444;
   }
   
