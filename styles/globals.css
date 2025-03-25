@@ -1,3 +1,8 @@
+html {
+    transform: scale(0.9);
+    transform-origin: top left;
+    width: 111.11%; /* to compensate for scale */
+  }
 .remove-button {
     background-color: #91CB3E;
 }
