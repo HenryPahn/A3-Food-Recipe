@@ -1,4 +1,3 @@
-import { Card, Form, Alert, Button } from "react-bootstrap";
 import { useState } from 'react';
 import { registerUser } from "@/lib/authenticate";
 import Link from 'next/link';

@@ -1,5 +1,3 @@
-import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
-import Link from "next/link";
 import { useRouter } from 'next/router';
 import { useState, useEffect } from "react";
 import { Card, Button, Row, Col } from 'react-bootstrap';

@@ -1,5 +1,4 @@
-import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
-import Link from "next/link";
+
 import { useRouter } from 'next/router';
 import { useState, useEffect } from "react";
 import { Card, Button, Row, Col } from 'react-bootstrap';
@@ -7,7 +6,7 @@ import { getToken, isAuthenticated, removeToken } from '@/lib/authenticate';
 import { getHistory, removeHistory } from '@/lib/history';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 export default function History() {
     const router = useRouter();

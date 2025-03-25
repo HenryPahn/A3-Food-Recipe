@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Card, Button, Row, Col } from 'react-bootstrap';
-import { getToken, isAuthenticated } from '@/lib/authenticate';
+import { getToken } from '@/lib/authenticate';
 import { getMealPlan, removeMealPlan, clearMealPlan } from '@/lib/mealPlan';
 import { useRouter } from 'next/router';
 
