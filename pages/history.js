@@ -42,20 +42,20 @@ export default function History() {
                             <Row key={index}>
                                 {recipes.slice(index, index + 3).map((item, i) => (
                                     <Col md={4} key={i} className="mb-4">
-                                        <Card className="mx-auto pop-up-heading" style={{ width: '100%', height: "250px" }} onClick={() => handleView(item.uri)}>
+                                        <Card className="mx-auto pop-up-heading" style={{ width: '90%', height: "245px" }} onClick={() => handleView(item.uri)}>
                                             <Row className="g-0">
                                                 <Col md={4}>
-                                                    <Card.Img src={item.image} alt={item.label} style={{ width: '100%', height: '248px', objectFit: 'cover' }} />
+                                                    <Card.Img src={item.image} alt={item.label} style={{ width: '90%', height: '238px', objectFit: 'cover' }} />
                                                 </Col>
                                                 <Col md={8}>
                                                     <Card.Body style={{
                                                         display: 'flex',
                                                         flexDirection: 'column',
                                                         justifyContent: 'space-between', 
-                                                        height: '100%'
+                                                        height: '90%'
                                                     }}>
                                                         <div>
-                                                            <h3 style={{ fontSize: "1.5rem", color: "#7FB237" }}>{item.label}</h3>
+                                                            <h3 style={{ fontSize: "1.3rem", color: "#7FB237" }}>{item.label}</h3>
                                                             <ul className="list-unstyled">
                                                                 <li><span style={{ fontWeight: "bold" }}>Cuisine:</span> {item.cuisineType}</li>
                                                                 <li><span style={{ fontWeight: "bold" }}>Dish type:</span> {item.dishType}</li>
