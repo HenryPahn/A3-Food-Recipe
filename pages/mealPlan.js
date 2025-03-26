@@ -51,10 +51,10 @@ export default function Home() {
                                 <Card 
                                 className="pop-up-heading" 
                                 style={{ 
-                                    height: "180px",        
-                                    width: "340px",         
-                                    marginBottom: "16px",   
-                                    padding: "12px",   
+                                    height: "200px", 
+                                    width: "370px", 
+                                    marginBottom: "20px", 
+                                    padding: "15px", 
                                     boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 2px 5px 0 rgba(0, 0, 0, 0.19)" 
                                 }} 
                                 onClick={() => handleView(meal.recipe.uri)}
@@ -62,7 +62,7 @@ export default function Home() {
                                 <h6 style={{ fontWeight: "bold", color: "#7FB237" }}>{meal.recipe.label}</h6>
                                 <Row>
                                     <Col xs={4} style={{ padding: "0", margin: "auto 10px" }}>
-                                        <Card.Img variant="top" src={meal.recipe.image} style={{ width: "120px", height: "120px", borderRadius: "5px" }} />
+                                        <Card.Img variant="top" src={meal.recipe.image} style={{ width: "140px", height: "140px", borderRadius: "5px" }} />
                                     </Col>
                                     <Col>
                                         <Card.Body style={{ 
@@ -74,7 +74,7 @@ export default function Home() {
                                         }}>
                                             <div>
                                                 <em>{meal.recipe.yield} servings</em> <br />
-                                                <em style={{ fontSize: "20px", textAlign: "center" }}>{Math.round(meal.recipe.calories / meal.recipe.yield)} kcal</em>
+                                                <em style={{ fontSize: "30px", textAlign: "center" }}>{Math.round(meal.recipe.calories / meal.recipe.yield)} kcal</em>
                                             </div>
                                             <Button 
                                                 className="remove-button" 
